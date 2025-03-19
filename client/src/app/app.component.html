@@ -1,0 +1,62 @@
+<h1>
+  Upload Image
+</h1>
+<form [formGroup]='uploadForm' (ngSubmit)="upload()">
+  <table>
+    <tr>
+      <td>
+        Image: 
+      </td>
+      <td>
+        <input type="file" accept="image/*" #file>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Comments:
+      </td>
+      <td>
+        <input type="text" formControlName="comments">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit">
+          Upload
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<hr>
+
+<button type="button" (click)="getAllPosts()">Display posts</button>
+
+<table border="1">
+  <tr>
+    <th>
+      Post Id
+    </th>
+    <th>
+      Comments
+    </th>
+    <th>
+      Picture
+    </th>
+  </tr>
+  @for(p of posts; track p.postId) {
+    <tr>
+      <td>
+        {{p.postId}}
+      </td>
+      <td>
+        {{p.comments}}
+      </td>
+      <td>
+        <img [src]="'data:image/jpeg;base64,' + p.pictureBlob" width="100px">
+      </td>
+    </tr>
+  }
+</table>
